@@ -1,0 +1,29 @@
+// WARNING: This output format is intended for human consumers only
+// and is subject to change without notice. Knock yourself out.
+// HINT: See also -Z dump-mir for MIR at specific points during compilation.
+fn with_mut_param(_1: SomeComplexType) -> SomeComplexType {
+    debug a => _1;
+    let mut _0: SomeComplexType;
+
+    bb0: {
+        (_1.0: u64) = Add(copy (_1.0: u64), const 10_u64);
+        (_1.1: u64) = Add(copy (_1.1: u64), const 2_u64);
+        _0 = move _1;
+        return;
+    }
+}
+
+fn with_rebind(_1: SomeComplexType) -> SomeComplexType {
+    debug a => _1;
+    let mut _0: SomeComplexType;
+    scope 1 {
+        debug a => _1;
+    }
+
+    bb0: {
+        (_1.0: u64) = Add(copy (_1.0: u64), const 10_u64);
+        (_1.1: u64) = Add(copy (_1.1: u64), const 2_u64);
+        _0 = move _1;
+        return;
+    }
+}
